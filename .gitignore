@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Data (large files)
+data/images/*.jpg
+data/images/*.jpeg
+data/images/*.png
+*.jpg
+*.jpeg
+*.png
+
+# Model weights (downloaded automatically)
+*.pt
+*.pth
+*.onnx
+
+# Results (optional - you might want to commit summaries)
+results/*/detections_*.json
+results/*/visualizations/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large outputs
+*.csv
+!results/**/summary.csv  # Keep summary files
