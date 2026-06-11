@@ -1,0 +1,58 @@
+# Configuration for street view segmentation analysis
+
+paths:
+  image_dir: "data/images"
+  results_dir: "results"
+  metadata_file: "data/metadata/ratings.csv"
+
+models:
+  yolo_coco:
+    model_name: "yolov8x.pt"    # ← Change from "yolo11m.pt"
+    conf_threshold: 0.25
+    device: "cpu"
+    # Only these classes will be included in output
+    classes_of_interest: 
+      - person
+      - car
+      - truck
+      - bus
+      - dog
+      - bicycle
+      - bench
+      - motorcycle
+      - traffic light
+      - stop sign
+      - parking meter
+    
+  yolo_openimages:
+    model_name: "yolov8s-oiv7.pt"
+    conf_threshold: 0.25
+    device: "cpu"
+    # Only these classes will be included in output
+    # Note: Open Images uses title case for class names
+    classes_of_interest:
+      - Tree
+      - Person
+      - Car
+      - Truck
+      - Bus
+      - Motorcycle
+      - Bicycle
+      - Dog
+      - Traffic light
+      - Bench
+      - Building
+    
+  oneformer:
+    model_name: "shi-labs/oneformer_cityscapes_swin_large"
+    dataset: "cityscapes"
+    device: "cpu"
+    task: "panoptic"
+    # No filtering - output all 19 Cityscapes classes
+
+processing:
+  batch_size: 1
+  save_visualizations: false
+  image_formats: [".jpg", ".jpeg", ".png"]
+
+  
