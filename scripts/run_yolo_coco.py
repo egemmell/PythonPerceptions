@@ -23,7 +23,7 @@ def load_config(config_path='config.yaml'):
         return yaml.safe_load(f)
 
 
-def run_inference(image_dir, output_dir, config):
+def run_inference(image_dir, output_dir, config, sample=None):
     """Run YOLO COCO inference on all images"""
     
     # Create output directory
@@ -54,6 +54,15 @@ def run_inference(image_dir, output_dir, config):
     print(f"\nFound {len(image_paths)} images")
     print(f"Running inference on {model_config['device']}...")
     print(f"Confidence threshold: {model_config['conf_threshold']}\n")
+    
+    # Limit to sample if specified
+    if sample:
+        image_paths = image_paths[:sample]
+        print(f"SAMPLE MODE: Processing first {sample} images")
+    
+    print(f"\nFound {len(image_paths)} images")
+    
+    
     
     # Storage for results
     summary_list = []      # Summary: counts per image
@@ -210,4 +219,4 @@ def main():
     output_dir = args.output or Path(config['paths']['results_dir']) / 'yolo_coco'
     
     # Run inference
-    run_inference(image_dir, output_dir, config)
+    run_inference(image_dir, output_dir, config, sample=args.sample)
