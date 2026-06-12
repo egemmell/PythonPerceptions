@@ -7,10 +7,9 @@ paths:
 
 models:
   yolo_coco:
-    model_name: "yolov8x.pt"    # ← Change from "yolo11m.pt"
+    model_name: "yolo26x.pt"    # Custom model for 12 classes (everything except trees)
     conf_threshold: 0.25
-    device: "cpu"
-    # Only these classes will be included in output
+    device: "cpu"              # ← Changed from "cpu"
     classes_of_interest: 
       - person
       - car
@@ -27,26 +26,16 @@ models:
   yolo_openimages:
     model_name: "yolov8s-oiv7.pt"
     conf_threshold: 0.25
-    device: "cpu"
+    device: "cpu"              # ← Changed from "gpu"
     # Only these classes will be included in output
     # Note: Open Images uses title case for class names
     classes_of_interest:
       - Tree
-      - Person
-      - Car
-      - Truck
-      - Bus
-      - Motorcycle
-      - Bicycle
-      - Dog
-      - Traffic light
-      - Bench
-      - Building
     
   oneformer:
     model_name: "shi-labs/oneformer_cityscapes_swin_large"
     dataset: "cityscapes"
-    device: "cpu"
+    device: "cpu"              # ← Changed from "cpu"
     task: "panoptic"
     # No filtering - output all 19 Cityscapes classes
 
@@ -54,5 +43,3 @@ processing:
   batch_size: 1
   save_visualizations: false
   image_formats: [".jpg", ".jpeg", ".png"]
-
-  
