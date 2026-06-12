@@ -1,5 +1,6 @@
-
-
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path.cwd()))
 
 from scripts.run_yolo_coco import run_inference, load_config
 
@@ -18,4 +19,3 @@ except Exception as e:
     print(f"✗ Error: {e}")
     import traceback
     traceback.print_exc()
-EOF
